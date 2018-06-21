@@ -14,12 +14,12 @@ namespace Vendas.Persistencia
             Database.CreateIfNotExists();
         }
 
-        DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
 
-        DbSet<Produto> Produtos { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
 
-        DbSet<Venda> Vendas { get; set; }
+        public DbSet<Venda> Vendas { get; set; }
 
-        DbSet<ItemVenda> ItensVenda { get; set; }
+        public DbSet<ItemVenda> ItensVenda { get; set; }
     }
 }

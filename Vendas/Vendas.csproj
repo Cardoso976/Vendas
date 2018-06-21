@@ -154,6 +154,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -175,11 +176,13 @@
       <DependentUpon>201806210538066_ItensVenda.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\ItemVenda.cs" />
-    <Compile Include="Models\Produto.cs" />
-    <Compile Include="Models\Status.cs" />
-    <Compile Include="Models\Venda.cs" />
+    <Compile Include="Models\Model\Cliente.cs" />
+    <Compile Include="Models\Model\ItemVenda.cs" />
+    <Compile Include="Models\Model\Produto.cs" />
+    <Compile Include="Models\Model\Status.cs" />
+    <Compile Include="Models\Model\Venda.cs" />
+    <Compile Include="Models\Negocio\ClienteNegocio.cs" />
+    <Compile Include="Models\Repositorio\ClienteRepositorio.cs" />
     <Compile Include="Persistencia\VendaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -261,6 +264,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
