@@ -26,7 +26,7 @@ namespace Vendas.Models
 
         public void Deletar(int id)
         {
-            repositorio.DeletarCliente(id);
+            repositorio.ExcluirCliente(id);
         }
 
         public Cliente GetCliente(int id)

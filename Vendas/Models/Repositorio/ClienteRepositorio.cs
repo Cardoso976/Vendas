@@ -31,7 +31,7 @@ namespace Vendas.Models
             _db.SaveChanges();
         }
 
-        public void DeletarCliente(int id)
+        public void ExcluirCliente(int id)
         {
             var cliente = GetCliente(id);
             _db.Clientes.Remove(cliente);
@@ -41,7 +41,8 @@ namespace Vendas.Models
         public void AtualizarCliente(Cliente cliente)
         {
             var cli = GetCliente(cliente.Id);
-            cli = cliente;
+            cli.Nome = cliente.Nome;
+            cli.Email = cliente.Email;
             _db.SaveChanges();
         }
     }

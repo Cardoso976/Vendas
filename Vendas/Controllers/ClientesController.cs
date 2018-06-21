@@ -33,13 +33,13 @@ namespace Vendas.Controllers
             clienteNegocio.Cadastrar(cliente);
         }
 
-        [HttpPut]
+        [HttpPost]
         public void Atualizar(Cliente cliente)
         {
             clienteNegocio.Atualizar(cliente);
         }
 
-        [HttpDelete]
+        [HttpPost]
         public void Excluir(int id)
         {
             clienteNegocio.Deletar(id);
