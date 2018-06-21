@@ -23,14 +23,16 @@ namespace Vendas
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/bootstrap-checkbox-radio.js",
                 "~/Scripts/bootstrap-notify.js",
-                "~/Scripts/paper-dashboard.js"));
+                "~/Scripts/paper-dashboard.js",
+                "~/Scripts/demo.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/paper-dashboard.css",
                 "~/Content/themify-icons.css",
                 "~/Content/font-google.css",
-                "~/Content/font-awesome.min.css"));
+                "~/Content/font-awesome.min.css",
+                "~/Content/demo.css"));
         }
     }
 }
