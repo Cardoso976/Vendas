@@ -15,5 +15,9 @@ namespace Vendas.Persistencia
         }
 
         DbSet<Cliente> Clientes { get; set; }
+
+        DbSet<Produto> Produtos { get; set; }
+
+        DbSet<Venda> Vendas { get; set; }
     }
 }

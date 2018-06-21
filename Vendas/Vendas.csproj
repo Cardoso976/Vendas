@@ -162,8 +162,19 @@
     <Compile Include="Migrations\201806210524540_Clientes.Designer.cs">
       <DependentUpon>201806210524540_Clientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806210528152_Produtos.cs" />
+    <Compile Include="Migrations\201806210528152_Produtos.Designer.cs">
+      <DependentUpon>201806210528152_Produtos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806210530280_Vendas.cs" />
+    <Compile Include="Migrations\201806210530280_Vendas.Designer.cs">
+      <DependentUpon>201806210530280_Vendas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Produto.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\Venda.cs" />
     <Compile Include="Persistencia\VendaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -226,6 +237,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806210524540_Clientes.resx">
       <DependentUpon>201806210524540_Clientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806210528152_Produtos.resx">
+      <DependentUpon>201806210528152_Produtos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806210530280_Vendas.resx">
+      <DependentUpon>201806210530280_Vendas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
