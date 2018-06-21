@@ -1,42 +1,121 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>@ViewBag.Title</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+    <div class="wrapper">
+        <div class="sidebar" data-background-color="black" data-active-color="danger">
+
+            <!--
+                Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+                Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+            -->
+
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    @Html.ActionLink("Vendas", "Index", "Home", new { area = "" }, new { @class = "simple-text" })
+                </div>
+
+                <ul class="nav">
+                    <li class="active">
+                        <a href="@Url.Action("Index", "Home")">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("About", "Home")">
+                            <i class="ti-user"></i>
+                            <p>Clientes</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="table.html">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Table List</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="typography.html">
+                            <i class="ti-text"></i>
+                            <p>Typography</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="icons.html">
+                            <i class="ti-pencil-alt2"></i>
+                            <p>Icons</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="maps.html">
+                            <i class="ti-map"></i>
+                            <p>Maps</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="notifications.html">
+                            <i class="ti-bell"></i>
+                            <p>Notifications</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+
+        <div class="main-panel">
+
+            @RenderBody()
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+
+                            <li>
+                                <a href="http://www.creative-tim.com">
+                                    Creative Tim
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://blog.creative-tim.com">
+                                    Blog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.creative-tim.com/license">
+                                    Licenses
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright pull-right">
+                        &copy;
+                        @DateTime.Now.Year, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
 </body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
 </html>
