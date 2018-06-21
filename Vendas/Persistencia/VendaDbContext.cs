@@ -19,5 +19,7 @@ namespace Vendas.Persistencia
         DbSet<Produto> Produtos { get; set; }
 
         DbSet<Venda> Vendas { get; set; }
+
+        DbSet<ItemVenda> ItensVenda { get; set; }
     }
 }
