@@ -1,161 +1,95 @@
-﻿<!doctype html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="~/img/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-    <title>@ViewBag.Title</title>
-
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Controle de Estoque</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
 </head>
 <body>
-
-    <div class="wrapper">
-        <div class="sidebar" data-background-color="black" data-active-color="danger">
-
-            <!--
-            Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-            Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-            -->
-
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    @Html.ActionLink("Vendas", "Index", "Home", new { area = "" }, new { @class = "simple-text" })
-                </div>
-
-                <ul class="nav">
-                    <li class="active">
-                        <a href="@Url.Action("Index", "Home")">
-                            <i class="ti-panel"></i>
-                            <p>Dashboard</p>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Controle de Estoque", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Cadastros
+                            <span class="caret"></span>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
+                            <li>@Html.ActionLink("Marcas de produtos", "Index", "CadMarcaProduto")</li>
+                            <li>@Html.ActionLink("Locais de armazenamento", "Index", "CadLocalArmazenamento")</li>
+                            <li>@Html.ActionLink("Unidades de medida", "Index", "CadUnidadeMedida")</li>
+                            <li>@Html.ActionLink("Produtos", "Index", "CadProduto")</li>
+                            <li class="nav-divider"></li>
+                            <li>@Html.ActionLink("Países", "Index", "CadPais")</li>
+                            <li>@Html.ActionLink("Estados", "Index", "CadEstado")</li>
+                            <li>@Html.ActionLink("Cidades", "Index", "CadCidade")</li>
+                            <li>@Html.ActionLink("Fornecedores", "Index", "CadFornecedor")</li>
+                            <li class="nav-divider"></li>
+                            <li>@Html.ActionLink("Perfis de Usuários", "Index", "CadPerfil")</li>
+                            <li>@Html.ActionLink("Usuários", "Index", "CadUsuario")</li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="@Url.Action("Index", "Clientes")">
-                            <i class="ti-user"></i>
-                            <p>Clientes</p>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Operações
+                            <span class="caret"></span>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Entrada de produtos", "Index", "OperEntradaProduto")</li>
+                            <li>@Html.ActionLink("Saída de produtos", "Index", "OperSaidaProduto")</li>
+                            <li>@Html.ActionLink("Lançamento de perdas de produtos", "LancPerdaProduto", "Operacao")</li>
+                            <li>@Html.ActionLink("Inventário de estoque", "Index", "OperInventario")</li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="table.html">
-                            <i class="ti-view-list-alt"></i>
-                            <p>Table List</p>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Relatórios
+                            <span class="caret"></span>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Posição do Estoque", "PosicaoEstoque", "Relatorio")</li>
+                            <li>@Html.ActionLink("Ressuprimento", "Ressuprimento", "Relatorio")</li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="typography.html">
-                            <i class="ti-text"></i>
-                            <p>Typography</p>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Gráficos
+                            <span class="caret"></span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="icons.html">
-                            <i class="ti-pencil-alt2"></i>
-                            <p>Icons</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="maps.html">
-                            <i class="ti-map"></i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="notifications.html">
-                            <i class="ti-bell"></i>
-                            <p>Notifications</p>
-                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Perdas por mês", "PerdaMes", "Grafico")</li>
+                            <li>@Html.ActionLink("Entradas vs saídas por mês", "EntradaSaidaMesa", "Grafico")</li>
+                        </ul>
                     </li>
                 </ul>
+
             </div>
-        </div>
-        <div class="main-panel">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar bar1"></span>
-                            <span class="icon-bar bar2"></span>
-                            <span class="icon-bar bar3"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Template</a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-panel"></i>
-                                    <p>Stats</p>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-                                    <p>Notifications</p>
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Notification 1</a></li>
-                                    <li><a href="#">Notification 2</a></li>
-                                    <li><a href="#">Notification 3</a></li>
-                                    <li><a href="#">Notification 4</a></li>
-                                    <li><a href="#">Another notification</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="ti-settings"></i>
-                                    <p>Settings</p>
-                                </a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-            </nav>
-
-
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        @RenderBody()
-                    </div>
-                </div>
-            </div>
-
-
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="copyright pull-right">
-                        &copy;
-                        <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
-                    </div>
-                </div>
-            </footer>
-
         </div>
     </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Controle de Estoque</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/sweetalert2.min.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
 </html>

@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Vendas.Models;
 
 namespace Vendas.Controllers
@@ -10,7 +13,8 @@ namespace Vendas.Controllers
         // GET: Clientes
         public ActionResult Index()
         {
-            return View();
+            var listaClientes = clienteNegocio.GetClientes();
+            return View(listaClientes);
         }
 
         [HttpGet]
@@ -20,29 +24,43 @@ namespace Vendas.Controllers
             return Json(listaClientes, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public ActionResult Cliente(int id)
+        [HttpPost]
+        public JsonResult Cliente(int id)
         {
-            var cliente = clienteNegocio.GetCliente(id);
-            return Json(cliente, JsonRequestBehavior.AllowGet);
+            return Json(clienteNegocio.GetCliente(id));
         }
 
         [HttpPost]
-        public void Cadastrar(Cliente cliente)
+        public JsonResult Salvar(Cliente cliente)
         {
-            clienteNegocio.Cadastrar(cliente);
+            var resultado = "OK";
+            var mensagens = new List<string>();
+            var idSalvo = string.Empty;
+
+            if (!ModelState.IsValid)
+            {
+                resultado = "AVISO";
+                mensagens = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList();
+            }
+            else
+            {
+                try
+                {
+                    idSalvo = clienteNegocio.SalvarCliente(cliente).ToString();
+                }
+                catch (Exception ex)
+                {
+                    resultado = "ERRO";
+                }
+            }
+
+            return Json(new { Resultado = resultado, Mensagens = mensagens, IdSalvo = idSalvo });
         }
 
         [HttpPost]
-        public void Atualizar(Cliente cliente)
+        public JsonResult Excluir(int id)
         {
-            clienteNegocio.Atualizar(cliente);
-        }
-
-        [HttpPost]
-        public void Excluir(int id)
-        {
-            clienteNegocio.Deletar(id);
+            return Json(clienteNegocio.Deletar(id));
         }
 
     }

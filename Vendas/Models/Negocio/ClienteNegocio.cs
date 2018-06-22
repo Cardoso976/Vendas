@@ -14,19 +14,14 @@ namespace Vendas.Models
             repositorio = new ClienteRepositorio();
         }
 
-        public void Cadastrar(Cliente cliente)
+        public int SalvarCliente(Cliente cliente)
         {
-            repositorio.Cadastrar(cliente);
+            return repositorio.Salvar(cliente);
         }
 
-        public void Atualizar(Cliente cliente)
+        public bool Deletar(int id)
         {
-            repositorio.AtualizarCliente(cliente);
-        }
-
-        public void Deletar(int id)
-        {
-            repositorio.ExcluirCliente(id);
+           return repositorio.ExcluirCliente(id);
         }
 
         public Cliente GetCliente(int id)

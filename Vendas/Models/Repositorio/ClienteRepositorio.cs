@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Vendas.Persistencia;
 
 namespace Vendas.Models
@@ -20,7 +19,7 @@ namespace Vendas.Models
             return _db.Clientes.Find(id);
         }
 
-        public IEnumerable<Cliente> GetClientes()
+        public List<Cliente> GetClientes()
         {
             return _db.Clientes.ToList();
         }
@@ -31,19 +30,39 @@ namespace Vendas.Models
             _db.SaveChanges();
         }
 
-        public void ExcluirCliente(int id)
+        public bool ExcluirCliente(int id)
         {
-            var cliente = GetCliente(id);
-            _db.Clientes.Remove(cliente);
-            _db.SaveChanges();
+            bool ret;
+            try
+            {
+                var cliente = GetCliente(id);
+                _db.Clientes.Remove(cliente);
+                _db.SaveChanges();
+                ret = true;
+            }
+            catch
+            {
+                ret = false;
+            }
+            return ret;
         }
 
-        public void AtualizarCliente(Cliente cliente)
+        public int Salvar(Cliente cliente)
         {
-            var cli = GetCliente(cliente.Id);
-            cli.Nome = cliente.Nome;
-            cli.Email = cliente.Email;
+            if (cliente.Id == 0)
+            {
+                _db.Clientes.Add(cliente);
+            }
+            else
+            {
+                var cli = GetCliente(cliente.Id);
+                cli.Nome = cliente.Nome;
+                cli.Email = cliente.Email;
+            }
+
             _db.SaveChanges();
+
+            return cliente.Id;
         }
     }
 }
