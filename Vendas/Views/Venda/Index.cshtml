@@ -1,0 +1,76 @@
+﻿@model List<Vendas.Models.Venda>
+    @{
+        Layout = "~/Views/Shared/_Cadastro.cshtml";
+        ViewBag.Title = "Vendas";
+        ViewBag.Lista = Model;
+    }
+
+    @section Styles {
+        <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+        <link href="~/Content/Cadastro/Venda.css" rel="stylesheet" />
+    }
+
+    @section TituloGrid {
+        <th>Data</th>
+        <th>Cliente</th>
+        <th>Status</th>
+        <th>Ação</th>
+    }
+
+    @section CamposCadastro {
+        <div class="row">
+            <div class="col-md-9">
+                @Html.Label("txt_data", "Data", new { @class = "control-label" })
+                @Html.TextBox("txt_data", null, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3" style="line-height: 2.2em">
+                <div class="form-check">
+                    @Html.RadioButton("cbx_status_aberto", (int)Vendas.Models.StatusVenda.Aberto, new { id = "cbx_status_aberto", @class = "form-check-input" })
+                    @Html.Label("cbx_status_aberto", "Venda Aberta", new { @class = "form-check-label" })
+                </div>
+                <div class="form-check">
+                    @Html.RadioButton("cbx_status_fechado", (int)Vendas.Models.StatusVenda.Fechado, new { id = "cbx_status_fechado", @class = "form-check-input" })
+                    @Html.Label("cbx_status_fechado", "Venda Fechada", new { @class = "form-check-label" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Label("ddl_cliente", "Cliente", new { @class = "control-label" })
+                @Html.DropDownList("ddl_cliente", new SelectList(ViewBag.Cliente, "Id", "Nome", "Email"), new { @class = "form-control" })
+            </div>
+        </div>
+
+    }
+
+    @section Scripts{
+        <script src="~/Scripts/bootstrap-select.min.js"></script>
+        <script>
+        var tituloPagina = '@ViewBag.Title';
+        var url_excluir = '@Url.Action("Excluir", "Venda")';
+        var url_confirmar = '@Url.Action("Salvar", "Venda")';
+        var url_alterar = '@Url.Action("Venda", "Venda")';
+        var url_listar_clientes = '@Url.Action("Listar", "Clientes")';
+        var linhas = [];
+
+        @{
+            foreach (var item in Model)
+            {
+                @:linhas.push(@Html.Raw(Json.Encode(item)));
+            }
+        }
+        </script>
+        <script id="template-grid" type="x-tmpl-mustache">
+            <tr data-id="{{ Id }}">
+                <td>{{ Data }}</td>
+                <td>{{ Cliente.Nome }}</td>
+                <td>{{ #StatusVenda }}Aberto{{ /StatusVenda }}{{ ^StatusVenda }}Fechado{{ /StatusVenda }}</td>
+                <td>
+                    <a class="btn btn-primary btn-alterar" role="button"><i class="glyphicon glyphicon-pencil"></i> Alterar</a>
+                    <a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash"></i> Excluir</a>
+                </td>
+            </tr>
+        </script>
+        <script src="~/Scripts/Cadastro/Venda.js"></script>
+        <script src="~/Scripts/jquery.mask.min.js"></script>
+    }

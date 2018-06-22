@@ -157,6 +157,7 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
+    <Compile Include="Controllers\VendaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,8 +189,10 @@
     <Compile Include="Models\Model\Venda.cs" />
     <Compile Include="Models\Negocio\ClienteNegocio.cs" />
     <Compile Include="Models\Negocio\ProdutoNegocio.cs" />
+    <Compile Include="Models\Negocio\VendaNegocio.cs" />
     <Compile Include="Models\Repositorio\ClienteRepositorio.cs" />
     <Compile Include="Models\Repositorio\ProdutoRepositorio.cs" />
+    <Compile Include="Models\Repositorio\VendaRepositorio.cs" />
     <Compile Include="Persistencia\VendaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -202,6 +205,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Cadastro\Clientes.css" />
+    <Content Include="Content\Cadastro\Produto.css" />
+    <Content Include="Content\Cadastro\Venda.css" />
     <Content Include="Content\sweetalert2.min.css" />
     <Content Include="Content\themify-icons.css" />
     <Content Include="favicon.ico" />
@@ -251,6 +256,7 @@
     <Content Include="Scripts\Cadastro\CadastroBase.js" />
     <Content Include="Scripts\Cadastro\Cliente.js" />
     <Content Include="Scripts\Cadastro\Produto.js" />
+    <Content Include="Scripts\Cadastro\Venda.js" />
     <Content Include="Scripts\chartist.min.js" />
     <Content Include="Scripts\i18n\defaults-ar_AR.js" />
     <Content Include="Scripts\i18n\defaults-ar_AR.min.js" />
@@ -363,6 +369,7 @@
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Produtos\Index.cshtml" />
     <Content Include="Views\Shared\_Cadastro.cshtml" />
+    <Content Include="Views\Venda\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
