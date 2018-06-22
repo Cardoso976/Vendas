@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Vendas.Models
 {
@@ -10,13 +6,16 @@ namespace Vendas.Models
     {
         public int Id { get; set; }
 
-        [MaxLength(100)]
+        [Required(ErrorMessage = "Preencha o nome.")]
+        [MaxLength(100, ErrorMessage = "A descrição pode ter no máximo 100 caracteres.")]
         public string Descricao { get; set; }
 
-        [Range(0, 99999999.99)]
+        [Required(ErrorMessage = "Preencha o preço de custo.")]
+        [Range(0, 99999.99)]
         public decimal PrecoCusto { get; set; }
 
-        [Range(0, 99999999.99)]
+        [Required(ErrorMessage = "Preencha o preço de venda.")]
+        [Range(0, 99999.99)]
         public decimal PrecoVenda { get; set; }
     }
 }

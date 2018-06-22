@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Vendas.Models;
 using Vendas.Models.Negocio;
 
@@ -11,39 +14,62 @@ namespace Vendas.Controllers
         // GET: Produtos
         public ActionResult Index()
         {
-            return View();
+            var listaProdutos = produtoNegocio.GetProdutos();
+            return View(listaProdutos);
         }
 
         [HttpGet]
-        public ActionResult Lista()
+        public ActionResult Listar()
         {
-            var lista = produtoNegocio.GetProdutos();
-            return Json(lista, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public ActionResult Cliente(int id)
-        {
-            var produto = produtoNegocio.GetProduto(id);
-            return Json(produto, JsonRequestBehavior.AllowGet);
+            var listaProdutos = produtoNegocio.GetProdutos();
+            return Json(listaProdutos, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public void Cadastrar(Produto produto)
+        public JsonResult Produto(int id)
         {
-            produtoNegocio.Cadastrar(produto);
+            return Json(produtoNegocio.GetProduto(id));
         }
 
         [HttpPost]
-        public void Excluir(Produto produto)
+        public JsonResult Salvar()
         {
-            produtoNegocio.Deletar(produto.Id);
+            var resultado = "OK";
+            var mensagens = new List<string>();
+            var idSalvo = string.Empty;
+
+            var produto = new Produto()
+            {
+                Id = Int32.Parse(Request.Form["Id"]),
+                Descricao = Request.Form["Descricao"],
+                PrecoCusto = Decimal.Parse(Request.Form["PrecoCusto"]),
+                PrecoVenda = Decimal.Parse(Request.Form["PrecoVenda"])
+            };
+
+            if (!ModelState.IsValid)
+            {
+                resultado = "AVISO";
+                mensagens = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList();
+            }
+            else
+            {
+                try
+                {
+                    idSalvo = produtoNegocio.SalvarProduto(produto).ToString();
+                }
+                catch (Exception ex)
+                {
+                    resultado = "ERRO";
+                }
+            }
+
+            return Json(new { Resultado = resultado, Mensagens = mensagens, IdSalvo = idSalvo });
         }
 
         [HttpPost]
-        public void Alterar(Produto produto)
+        public JsonResult Excluir(int id)
         {
-            produtoNegocio.Atualizar(produto);
+            return Json(produtoNegocio.Deletar(id));
         }
     }
 }

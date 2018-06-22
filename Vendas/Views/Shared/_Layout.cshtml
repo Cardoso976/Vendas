@@ -28,7 +28,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
-                            <li>@Html.ActionLink("Marcas de produtos", "Index", "CadMarcaProduto")</li>
+                            <li>@Html.ActionLink("Produto", "Index", "Produtos")</li>
                             <li>@Html.ActionLink("Locais de armazenamento", "Index", "CadLocalArmazenamento")</li>
                             <li>@Html.ActionLink("Unidades de medida", "Index", "CadUnidadeMedida")</li>
                             <li>@Html.ActionLink("Produtos", "Index", "CadProduto")</li>
@@ -89,6 +89,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/inputmask")
     <script src="~/Scripts/sweetalert2.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>

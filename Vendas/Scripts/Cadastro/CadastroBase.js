@@ -1,6 +1,4 @@
-﻿var salvar_customizado = null;
-
-//function marcar_ordenacao_campo(coluna) {
+﻿//function marcar_ordenacao_campo(coluna) {
 //    var ordem_crescente = true,
 //        ordem = coluna.find('i');
 
@@ -43,6 +41,8 @@
 //    data.__RequestVerificationToken = $('[name=__RequestVerificationToken]').val();
 //    return data;
 //}
+
+var salvar_customizado = null;
 
 function formatar_mensagem_aviso(mensagens) {
     var template =
@@ -121,14 +121,12 @@ function salvar_erro() {
     swal('Aviso', 'Não foi possível salvar. Tente novamente em instantes.', 'warning');
 }
 
-$(document).on('click',
-    '#btn_incluir',
+$(document).on('click', '#btn_incluir',
     function () {
         abrir_form(get_dados_inclusao());
     })
-    .on('click',
-        '.btn-alterar',
-        function () {
+    .on('click', '.btn-alterar', function () {
+        $('#txt_preco_custo,#txt_preco_venda').mask('#.##0,00', { reverse: true });
             var btn = $(this),
                 id = btn.closest('tr').attr('data-id'),
                 url = url_alterar,
@@ -147,9 +145,7 @@ $(document).on('click',
                         'warning');
                 });
         })
-    .on('click',
-        '.btn-excluir',
-        function () {
+    .on('click','.btn-excluir',function () {
             var btn = $(this),
                 tr = btn.closest('tr'),
                 id = tr.attr('data-id'),
@@ -189,9 +185,7 @@ $(document).on('click',
                 }
             });
         })
-    .on('click',
-        '#btn_confirmar',
-        function () {
+    .on('click','#btn_confirmar',function () {
             var btn = $(this),
                 url = url_confirmar,
                 param = get_dados_form();
@@ -209,9 +203,7 @@ $(document).on('click',
                     });
             }
         })
-    .on('click',
-        '.page-item',
-        function () {
+    .on('click','.page-item',function () {
             var ordem = obter_ordem_grid(),
                 btn = $(this),
                 filtro = $('#txt_filtro'),
@@ -254,9 +246,8 @@ $(document).ready(function () {
     for (var i = 0; i < linhas.length; i++) {
         grid.append(criar_linha_grid(linhas[i]));
     }
-
-    //marcar_ordenacao_campo($('#grid_cadastro thead tr th:nth-child(1) span'));
 });
+//marcar_ordenacao_campo($('#grid_cadastro thead tr th:nth-child(1) span'));
     //.on('change', '#ddl_tam_pag', function () {
     //    var ordem = obter_ordem_grid(),
     //        ddl = $(this),

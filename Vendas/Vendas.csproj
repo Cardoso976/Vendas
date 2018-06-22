@@ -176,6 +176,10 @@
     <Compile Include="Migrations\201806210538066_ItensVenda.Designer.cs">
       <DependentUpon>201806210538066_ItensVenda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806221730036_Produtos1.cs" />
+    <Compile Include="Migrations\201806221730036_Produtos1.Designer.cs">
+      <DependentUpon>201806221730036_Produtos1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Model\Cliente.cs" />
     <Compile Include="Models\Model\ItemVenda.cs" />
@@ -246,6 +250,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Cadastro\CadastroBase.js" />
     <Content Include="Scripts\Cadastro\Cliente.js" />
+    <Content Include="Scripts\Cadastro\Produto.js" />
     <Content Include="Scripts\chartist.min.js" />
     <Content Include="Scripts\i18n\defaults-ar_AR.js" />
     <Content Include="Scripts\i18n\defaults-ar_AR.min.js" />
@@ -324,6 +329,11 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.mask.js" />
+    <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\jquery.maskMoney.js" />
+    <Content Include="Scripts\jquery.priceformat.js" />
+    <Content Include="Scripts\jquery.priceformat.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -374,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806210538066_ItensVenda.resx">
       <DependentUpon>201806210538066_ItensVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806221730036_Produtos1.resx">
+      <DependentUpon>201806221730036_Produtos1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

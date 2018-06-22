@@ -12,12 +12,7 @@ namespace Vendas.Models.Repositorio
 
         public ProdutoRepositorio()
         {
-            _db = new VendaDbContext();
-        }
-
-        public IEnumerable<Produto> GetProdutos()
-        {
-            return _db.Produtos.ToList();
+            this._db = new VendaDbContext();
         }
 
         public Produto GetProduto(int id)
@@ -25,26 +20,52 @@ namespace Vendas.Models.Repositorio
             return _db.Produtos.Find(id);
         }
 
-        public void CadastrarProduto(Produto produto)
+        public List<Produto> GetProdutos()
+        {
+            return _db.Produtos.ToList();
+        }
+
+        public void Cadastrar(Produto produto)
         {
             _db.Produtos.Add(produto);
             _db.SaveChanges();
         }
 
-        public void ExcluirProduto(int id)
+        public bool ExcluirProduto(int id)
         {
-            var produto = GetProduto(id);
-            _db.Produtos.Remove(produto);
-            _db.SaveChanges();
+            bool ret;
+            try
+            {
+                var produto = GetProduto(id);
+                _db.Produtos.Remove(produto);
+                _db.SaveChanges();
+                ret = true;
+            }
+            catch
+            {
+                ret = false;
+            }
+            return ret;
         }
 
-        public void AtualizarProduto(Produto produto)
+        public int Salvar(Produto produto)
         {
-            var prod = GetProduto(produto.Id);
-            prod.Descricao = produto.Descricao;
-            prod.PrecoCusto = produto.PrecoCusto;
-            prod.PrecoVenda = produto.PrecoVenda;
+            if (produto.Id == 0)
+            {
+                _db.Produtos.Add(produto);
+            }
+            else
+            {
+                var prod = GetProduto(produto.Id);
+                prod.Descricao = produto.Descricao;
+                prod.PrecoCusto = produto.PrecoCusto;
+                prod.PrecoVenda = produto.PrecoVenda;
+            }
+
             _db.SaveChanges();
+
+            return produto.Id;
         }
+
     }
 }

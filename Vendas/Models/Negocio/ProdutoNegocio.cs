@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Vendas.Models.Repositorio;
 
 namespace Vendas.Models.Negocio
@@ -15,19 +12,14 @@ namespace Vendas.Models.Negocio
             repositorio = new ProdutoRepositorio();
         }
 
-        public void Cadastrar(Produto produto)
+        public int SalvarProduto(Produto produto)
         {
-            repositorio.CadastrarProduto(produto);
+            return repositorio.Salvar(produto);
         }
 
-        public void Atualizar(Produto produto)
+        public bool Deletar(int id)
         {
-            repositorio.AtualizarProduto(produto);
-        }
-
-        public void Deletar(int id)
-        {
-            repositorio.ExcluirProduto(id);
+            return repositorio.ExcluirProduto(id);
         }
 
         public Produto GetProduto(int id)

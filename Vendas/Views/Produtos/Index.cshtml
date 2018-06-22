@@ -1,7 +1,76 @@
-﻿
+﻿@model IEnumerable<Vendas.Models.Produto>
 @{
-    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Cadastro.cshtml";
+    ViewBag.Title = "Produtos";
+    ViewBag.Lista = Model;
 }
 
-<h2>Index</h2>
+@section Styles {
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/Cadastro/Clientes.css" rel="stylesheet" />
+}
 
+@section TituloGrid {
+    <th>Descrição</th>
+    <th>Preço de Custo</th>
+    <th>Preço de Venda</th>
+    <th>Ação</th>
+}
+
+@section CamposCadastro {
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("txt_descricao", "Descrição", new { @class = "control-label" })
+            @Html.TextBox("txt_descricao", null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("txt_preco_custo", "Preço de Custo", new { @class = "control-label" })
+            @Html.TextBox("txt_preco_custo", null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Label("txt_preco_venda", "Preço de Venda", new { @class = "control-label" })
+            @Html.TextBox("txt_preco_venda", null, new { @class = "form-control" })
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="~/Scripts/bootstrap-select.min.js"></script>
+    <script>
+        var tituloPagina = '@ViewBag.Title';
+        var url_excluir = '@Url.Action("Excluir", "Produtos")';
+        var url_confirmar = '@Url.Action("Salvar", "Produtos")';
+        @*var url_page_click = '@Url.Action("UsuarioPagina", "Clientes")';
+        var url_tam_pag_change = '@Url.Action("UsuarioPagina", "Clientes")';
+        var url_filtro_change = '@Url.Action("UsuarioPagina", "Clientes")';*@
+        var url_alterar = '@Url.Action("Produto", "Produtos")';
+        var linhas = [];
+
+        @{
+
+            foreach (var item in Model)
+            {
+                @:linhas.push(@Html.Raw(Json.Encode(item)));
+            }
+        }
+    </script>
+    <script id="template-grid" type="x-tmpl-mustache">
+        <tr data-id="{{ Id }}">
+            <td>{{ Descricao }}</td>
+            <td id="txt_preco">{{ PrecoCusto }}</td>
+            <td id="txt_preco">{{ PrecoVenda }}</td>
+            <td>
+                <a class="btn btn-primary btn-alterar" role="button"><i class="glyphicon glyphicon-pencil"></i> Alterar</a>
+                <a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash"></i> Excluir</a>
+            </td>
+        </tr>
+
+    </script>
+    <script src="~/Scripts/Cadastro/Produto.js"></script>
+    <script src="~/Scripts/jquery.mask.min.js"></script>
+    <script src="~/Scripts/jquery.priceformat.min.js"></script>
+}
