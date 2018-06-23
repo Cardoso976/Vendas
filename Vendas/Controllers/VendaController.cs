@@ -17,12 +17,11 @@ namespace Vendas.Controllers
         {
             ViewBag.Cliente = _cliente.GetClientes();
             var listaVendas = _vendaNegocio.GetVendas();
-
-            return View((List<Venda>) listaVendas);
+            return View(listaVendas);
         }
 
         [HttpGet]
-        public ActionResult Listar()
+        public JsonResult Listar()
         {
             var listaVendas = _vendaNegocio.GetVendas();
             return Json(listaVendas, JsonRequestBehavior.AllowGet);

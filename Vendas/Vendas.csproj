@@ -161,6 +161,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="JsonConverter\JsonDateConverter.cs" />
     <Compile Include="Migrations\201806210524540_Clientes.cs" />
     <Compile Include="Migrations\201806210524540_Clientes.Designer.cs">
       <DependentUpon>201806210524540_Clientes.cs</DependentUpon>
@@ -180,6 +181,14 @@
     <Compile Include="Migrations\201806221730036_Produtos1.cs" />
     <Compile Include="Migrations\201806221730036_Produtos1.Designer.cs">
       <DependentUpon>201806221730036_Produtos1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806222310304_VendaClienteId.cs" />
+    <Compile Include="Migrations\201806222310304_VendaClienteId.Designer.cs">
+      <DependentUpon>201806222310304_VendaClienteId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806222318368_ProdutoNomeTabela.cs" />
+    <Compile Include="Migrations\201806222318368_ProdutoNomeTabela.Designer.cs">
+      <DependentUpon>201806222318368_ProdutoNomeTabela.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Model\Cliente.cs" />
@@ -344,6 +353,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\mustache.js" />
     <Content Include="Scripts\mustache.min.js" />
     <Content Include="Scripts\respond.js" />
@@ -394,6 +404,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806221730036_Produtos1.resx">
       <DependentUpon>201806221730036_Produtos1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806222310304_VendaClienteId.resx">
+      <DependentUpon>201806222310304_VendaClienteId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806222318368_ProdutoNomeTabela.resx">
+      <DependentUpon>201806222318368_ProdutoNomeTabela.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

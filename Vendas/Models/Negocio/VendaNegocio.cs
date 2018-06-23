@@ -30,7 +30,7 @@ namespace Vendas.Models.Negocio
             return repositorio.GetVenda(id);
         }
 
-        public IEnumerable<Venda> GetVendas()
+        public List<Venda> GetVendas()
         {
             return repositorio.GetVendas();
         }

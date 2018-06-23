@@ -1,11 +1,11 @@
 ﻿function set_dados_form(dados) {
     $('#id_cadastro').val(dados.Id);
-    $('#txt_data').val(dados.Nome);
-    $('#ddl_cliente').val(dados.IdCliente);
+    $('#txt_data').val(dados.Data);
+    $('#ddl_cliente').val(dados.ClienteId);
     $('#cbx_status_aberto').prop('checked', false);
     $('#cbx_status_fechado').prop('checked', false);
 
-    if (dados.Tipo == 1) {
+    if (dados.StatusVenda == 1) {
         $('#cbx_status_fechado').prop('checked', true).trigger('click');
     }
     else {
@@ -14,7 +14,6 @@
 }
 
 function set_focus_form() {
-    $("txt_data").mask('00/00/0000');
     $('#txt_nome').focus();
 }
 
@@ -23,7 +22,7 @@ function get_dados_inclusao() {
         Id: 0,
         Data: '',
         StatusVenda: 0,
-        IdCliente: 0
+        ClienteId: 0
     };
 }
 
@@ -32,17 +31,17 @@ function get_dados_form() {
         Id: $('#id_cadastro').val(),
         Data: $('#txt_data').val(),
         StatusVenda: $('#cbx_status_fechado').is(':checked') ? 1 : 0,
-        IdCliente: $('#ddl_cliente').val()
+        ClienteId: $('#ddl_cliente').val()
     };
 }
 
 function preencher_linha_grid(param, linha) {
     linha
         .eq(0).html(param.Data).end()
-        .eq(1).html(param.IdCliente).end()
+        .eq(1).html(param.ClienteId).end()
         .eq(2).html(param.StatusVenda);
 }
 
 $(document).ready(function () {
-    $("txt_data").mask('00/00/0000');
+    $("#txt_data").mask('00/00/0000');
 });

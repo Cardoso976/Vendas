@@ -1,48 +1,4 @@
-﻿//function marcar_ordenacao_campo(coluna) {
-//    var ordem_crescente = true,
-//        ordem = coluna.find('i');
-
-//    if (ordem.length > 0) {
-//        ordem_crescente = ordem.hasClass('glyphicon-arrow-down');
-//        if (ordem_crescente) {
-//            ordem.removeClass('glyphicon-arrow-down');
-//            ordem.addClass('glyphicon glyphicon-arrow-up');
-//        }
-//        else {
-//            ordem.removeClass('glyphicon-arrow-up');
-//            ordem.addClass('glyphicon-arrow-down');
-//        }
-//    }
-//    else {
-//        $('.coluna-ordenacao i').remove();
-//        coluna.append('&nbsp;<i class="glyphicon glyphicon-arrow-down" style="color: #000000"></i>');
-//    }
-//}
-
-//function obter_ordem_grid() {
-//    var colunas_grid = $('.coluna-ordenacao'),
-//        ret = '';
-
-//    colunas_grid.each(function (index, item) {
-//        var coluna = $(item),
-//            ordem = coluna.find('i');
-
-//        if (ordem.length > 0) {
-//            ordem_crescente = ordem.hasClass('glyphicon-arrow-down');
-//            ret = coluna.attr('data-campo') + (ordem_crescente ? '' : ' desc');
-//            return true;
-//        }
-//    });
-
-//    return ret;
-//}
-
-//function add_anti_forgery_token(data) {
-//    data.__RequestVerificationToken = $('[name=__RequestVerificationToken]').val();
-//    return data;
-//}
-
-var salvar_customizado = null;
+﻿var salvar_customizado = null;
 
 function formatar_mensagem_aviso(mensagens) {
     var template =
@@ -56,6 +12,7 @@ function formatar_mensagem_aviso(mensagens) {
 }
 
 function abrir_form(dados) {
+    console.log(dados);
     set_dados_form(dados);
 
     var modal_cadastro = $('#modal_cadastro');
@@ -81,8 +38,8 @@ function abrir_form(dados) {
 }
 
 function criar_linha_grid(dados) {
+    dados.Data = moment(dados.Data).format("DD/MM/YYYY");
     var template = $('#template-grid').html();
-    console.log(dados);
     return Mustache.render(template, dados);
 }
 
@@ -126,16 +83,16 @@ $(document).on('click', '#btn_incluir',
         abrir_form(get_dados_inclusao());
     })
     .on('click', '.btn-alterar', function () {
-        $('#txt_preco_custo,#txt_preco_venda').mask('#.##0,00', { reverse: true });
             var btn = $(this),
                 id = btn.closest('tr').attr('data-id'),
                 url = url_alterar,
                 param = { 'id': id };
 
-            $.post(url,
-                param,
-                function (response) {
-                    if (response) {
+            $.post(url, param, function (response) {
+                if (response) {
+                    if (response.Data != null) {
+                        response.Data = moment(response.Data).format("DD/MM/YYYY");
+                    }
                         abrir_form(response);
                     }
                 })
@@ -247,112 +204,17 @@ $(document).ready(function () {
         grid.append(criar_linha_grid(linhas[i]));
     }
 });
-//marcar_ordenacao_campo($('#grid_cadastro thead tr th:nth-child(1) span'));
-    //.on('change', '#ddl_tam_pag', function () {
-    //    var ordem = obter_ordem_grid(),
-    //        ddl = $(this),
-    //        filtro = $('#txt_filtro'),
-    //        tamPag = ddl.val(),
-    //        pagina = 1,
-    //        url = url_tam_pag_change,
-    //        param = { 'pagina': pagina, 'tamPag': tamPag, 'filtro': filtro.val(), 'ordem': ordem };
 
-    //    $.post(url, param, function (response) {
-    //        if (response) {
-    //            var table = $('#grid_cadastro').find('tbody');
+parseWcfDate = function (str) {
 
-    //            table.empty();
-    //            if (response.length > 0) {
-    //                $('#grid_cadastro').removeClass('invisivel');
-    //                $('#mensagem_grid').addClass('invisivel');
-
-    //                for (var i = 0; i < response.length; i++) {
-    //                    table.append(criar_linha_grid(response[i]));
-    //                }
-    //            }
-    //            else {
-    //                $('#grid_cadastro').addClass('invisivel');
-    //                $('#mensagem_grid').removeClass('invisivel');
-    //            }
-
-    //            ddl.siblings().removeClass('active');
-    //            ddl.addClass('active');
-    //        }
-    //    })
-    //        .fail(function () {
-    //            swal('Aviso', 'Não foi possível recuperar as informações. Tente novamente em instantes.', 'warning');
-    //        });
-    //})
-    //.on('keyup', '#txt_filtro', function () {
-    //    var ordem = obter_ordem_grid(),
-    //        filtro = $(this),
-    //        ddl = $('#ddl_tam_pag'),
-    //        tamPag = ddl.val(),
-    //        pagina = 1,
-    //        url = url_filtro_change,
-    //        param = { 'pagina': pagina, 'tamPag': tamPag, 'filtro': filtro.val(), 'ordem': ordem };
-
-    //    $.post(url, param, function (response) {
-    //        if (response) {
-    //            var table = $('#grid_cadastro').find('tbody');
-
-    //            table.empty();
-    //            if (response.length > 0) {
-    //                $('#grid_cadastro').removeClass('invisivel');
-    //                $('#mensagem_grid').addClass('invisivel');
-
-    //                for (var i = 0; i < response.length; i++) {
-    //                    table.append(criar_linha_grid(response[i]));
-    //                }
-    //            }
-    //            else {
-    //                $('#grid_cadastro').addClass('invisivel');
-    //                $('#mensagem_grid').removeClass('invisivel');
-    //            }
-
-    //            ddl.siblings().removeClass('active');
-    //            ddl.addClass('active');
-    //        }
-    //    })
-    //        .fail(function () {
-    //            swal('Aviso', 'Não foi possível recuperar as informações. Tente novamente em instantes.', 'warning');
-    //        });
-    //})
-    //.on('click', '.coluna-ordenacao', function () {
-    //    marcar_ordenacao_campo($(this));
-
-    //    var ordem = obter_ordem_grid(),
-    //        filtro = $('#txt_filtro'),
-    //        ddl = $('#ddl_tam_pag'),
-    //        tamPag = ddl.val(),
-    //        pagina = 1,
-    //        url = url_filtro_change,
-    //        param = { 'pagina': pagina, 'tamPag': tamPag, 'filtro': filtro.val(), 'ordem': ordem };
-
-    //    $.post(url, param, function (response) {
-    //        if (response) {
-    //            var table = $('#grid_cadastro').find('tbody');
-
-    //            table.empty();
-    //            if (response.length > 0) {
-    //                $('#grid_cadastro').removeClass('invisivel');
-    //                $('#mensagem_grid').addClass('invisivel');
-
-    //                for (var i = 0; i < response.length; i++) {
-    //                    table.append(criar_linha_grid(response[i]));
-    //                }
-    //            }
-    //            else {
-    //                $('#grid_cadastro').addClass('invisivel');
-    //                $('#mensagem_grid').removeClass('invisivel');
-    //            }
-
-    //            ddl.siblings().removeClass('active');
-    //            ddl.addClass('active');
-    //        }
-    //    })
-    //        .fail(function () {
-    //            swal('Aviso', 'Não foi possível recuperar as informações. Tente novamente em instantes.', 'warning');
-    //        });
-    //});
-
+    if (str != null && str !== "") {
+        var regex = str.match(/\/Date\(([-+]?)([0-9]+)([-+]?)([0-9]*)\)\//);
+        var millisecs = parseInt(regex[2]);
+        var offset = 0;
+        if (regex[3] && regex[4])
+            offset = parseFloat(regex[3] + regex[4]) / 100;
+        var utcMillsecs = millisecs + offset * 3600 * 1000;
+        return moment(utcMillsecs).format("YYYY-MM-DD hh:mm:ss");
+    }
+    return "";
+};
