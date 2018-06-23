@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Vendas.Migrations;
 using Vendas.Persistencia;
 
 namespace Vendas.Models.Repositorio
@@ -20,9 +22,16 @@ namespace Vendas.Models.Repositorio
             return _db.Vendas.Find(id);
         }
 
+        public IQueryable<Venda> GetVendaQueryable(int id)
+        {
+            return _db.Vendas
+                .Include(v => v.Cliente)
+                .Where(x=> x.Id == id);
+        }
+
         public List<Venda> GetVendas()
         {
-            return _db.Vendas.ToList();
+            return _db.Vendas.Include(v => v.Cliente).ToList();
         }
 
         public void Cadastrar(Venda venda)

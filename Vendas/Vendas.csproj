@@ -157,7 +157,7 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
-    <Compile Include="Controllers\VendaController.cs" />
+    <Compile Include="Controllers\VendasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -379,7 +379,7 @@
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Produtos\Index.cshtml" />
     <Content Include="Views\Shared\_Cadastro.cshtml" />
-    <Content Include="Views\Venda\Index.cshtml" />
+    <Content Include="Views\Vendas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

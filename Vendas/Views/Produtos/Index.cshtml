@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Vendas.Models.Produto>
 @{
-    Layout = "~/Views/Shared/_Cadastro.cshtml";
+    Layout = "~/Views/Vendas/_Cadastro.cshtml";
     ViewBag.Title = "Produtos";
     ViewBag.Lista = Model;
 }
@@ -12,9 +12,9 @@
 
 @section TituloGrid {
     <th>Descrição</th>
-    <th>Preço de Custo</th>
+    <th>Preço Custo</th>
     <th>Preço de Venda</th>
-    <th>Ação</th>
+    <th class="col-md-3">Ação</th>
 }
 
 @section CamposCadastro {
@@ -72,5 +72,5 @@
     </script>
     <script src="~/Scripts/Cadastro/Produto.js"></script>
     <script src="~/Scripts/jquery.mask.min.js"></script>
-    <script src="~/Scripts/jquery.priceformat.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
 }

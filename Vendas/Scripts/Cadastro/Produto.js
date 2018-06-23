@@ -61,5 +61,5 @@ function get_param() {
 }
 
 $(document).ready(function () {
-    $('#txt_preco_custo,#txt_preco_venda,#txt_preco').mask('#.##0,00', { reverse: true });
+    $('#txt_preco_custo,#txt_preco_venda').mask('#.##0,00', { reverse: true });
 });

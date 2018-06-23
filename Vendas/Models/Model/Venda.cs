@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Vendas.JsonConverter;
 
 namespace Vendas.Models
@@ -9,7 +10,6 @@ namespace Vendas.Models
     {
         public int Id { get; set; }
 
-        [JsonConverter(typeof(JsonDateConverter))]
         [DataType(DataType.Date)]
         public DateTime Data { get; set; }
 
@@ -17,6 +17,7 @@ namespace Vendas.Models
 
         public int ClienteId { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public StatusVenda Status { get; set; }
     }
 }

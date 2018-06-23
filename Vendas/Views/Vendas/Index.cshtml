@@ -1,6 +1,6 @@
 ﻿@model List<Vendas.Models.Venda>
 @{
-    Layout = "~/Views/Shared/_Cadastro.cshtml";
+    Layout = "~/Views/Vendas/_Cadastro.cshtml";
     ViewBag.Title = "Vendas";
     ViewBag.Lista = Model;
 }
@@ -11,10 +11,10 @@
 }
 
 @section TituloGrid {
-    <th>Data</th>
-    <th>Cliente</th>
+    <th class="col-md-2">Data</th>
+    <th class="col-md-6">Cliente</th>
     <th>Status</th>
-    <th>Ação</th>
+    <th class="col-md-3">Ação</th>
 }
 
 @section CamposCadastro {
@@ -47,9 +47,9 @@
     <script src="~/Scripts/bootstrap-select.min.js"></script>
     <script>
         var tituloPagina = '@ViewBag.Title';
-        var url_excluir = '@Url.Action("Excluir", "Venda")';
-        var url_confirmar = '@Url.Action("Salvar", "Venda")';
-        var url_alterar = '@Url.Action("Venda", "Venda")';
+        var url_excluir = '@Url.Action("Excluir", "Vendas")';
+        var url_confirmar = '@Url.Action("Salvar", "Vendas")';
+        var url_alterar = '@Url.Action("Venda", "Vendas")';
         var url_listar_clientes = '@Url.Action("Listar", "Clientes")';
         var linhas = [];
 
@@ -65,7 +65,7 @@
         <tr data-id="{{ Id }}">
             <td>{{ Data }}</td>
             <td>{{ Cliente.Nome }}</td>
-            <td>{{ #StatusVenda }}Aberto{{ /StatusVenda }}{{ ^StatusVenda }}Fechado{{ /StatusVenda }}</td>
+            <td>{{ #Status }}Fechado{{ /Status }}{{ ^Status }}Aberto{{ /Status }}</td>
             <td>
                 <a class="btn btn-primary btn-alterar" role="button"><i class="glyphicon glyphicon-pencil"></i> Alterar</a>
                 <a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash"></i> Excluir</a>

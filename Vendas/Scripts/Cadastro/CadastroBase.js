@@ -38,7 +38,8 @@ function abrir_form(dados) {
 }
 
 function criar_linha_grid(dados) {
-    dados.Data = moment(dados.Data).format("DD/MM/YYYY");
+    dados.Data = moment(dados.Data).format('DD/MM/YYYY');
+    console.log(dados);
     var template = $('#template-grid').html();
     return Mustache.render(template, dados);
 }
@@ -169,9 +170,7 @@ $(document).on('click', '#btn_incluir',
                 url = url_page_click,
                 param = { 'pagina': pagina, 'tamPag': tamPag, 'filtro': filtro.val(), 'ordem': ordem };
 
-            $.post(url,
-                param,
-                function (response) {
+            $.post(url, param, function (response) {
                     if (response) {
                         var table = $('#grid_cadastro').find('tbody');
 
@@ -191,30 +190,16 @@ $(document).on('click', '#btn_incluir',
                         btn.siblings().removeClass('active');
                         btn.addClass('active');
                     }
-                })
+             })
                 .fail(function () {
                     swal('Aviso',
                         'Não foi possível recuperar as informações. Tente novamente em instantes.',
                         'warning');
                 });
-        });
+    });
 $(document).ready(function () {
     var grid = $('#grid_cadastro > tbody');
     for (var i = 0; i < linhas.length; i++) {
         grid.append(criar_linha_grid(linhas[i]));
     }
 });
-
-parseWcfDate = function (str) {
-
-    if (str != null && str !== "") {
-        var regex = str.match(/\/Date\(([-+]?)([0-9]+)([-+]?)([0-9]*)\)\//);
-        var millisecs = parseInt(regex[2]);
-        var offset = 0;
-        if (regex[3] && regex[4])
-            offset = parseFloat(regex[3] + regex[4]) / 100;
-        var utcMillsecs = millisecs + offset * 3600 * 1000;
-        return moment(utcMillsecs).format("YYYY-MM-DD hh:mm:ss");
-    }
-    return "";
-};

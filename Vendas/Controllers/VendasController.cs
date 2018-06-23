@@ -7,7 +7,7 @@ using Vendas.Models.Negocio;
 
 namespace Vendas.Controllers
 {
-    public class VendaController : Controller
+    public class VendasController : Controller
     {
         readonly ClienteNegocio _cliente = new ClienteNegocio();
         private readonly VendaNegocio _vendaNegocio = new VendaNegocio();
@@ -31,6 +31,12 @@ namespace Vendas.Controllers
         public JsonResult Venda(int id)
         {
             return Json(_vendaNegocio.GetVenda(id));
+        }
+
+        [HttpPost]
+        public JsonResult VendaQuery(int id)
+        {
+            return Json(_vendaNegocio.GetVendaQueryable(id));
         }
 
         [HttpPost]
