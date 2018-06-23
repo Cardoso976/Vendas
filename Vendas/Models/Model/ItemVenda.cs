@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Vendas.Models
 {
@@ -12,7 +8,11 @@ namespace Vendas.Models
 
         public Produto Produto { get; set; }
 
+        public int ProdutoId { get; set; }
+        
         public Venda Venda { get; set; }
+
+        public int VendaId { get; set; }
 
         public int Quantidade { get; set; }
 

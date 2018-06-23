@@ -156,6 +156,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItensVendaController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Controllers\VendasController.cs" />
     <Compile Include="Global.asax.cs">
@@ -190,16 +191,25 @@
     <Compile Include="Migrations\201806222318368_ProdutoNomeTabela.Designer.cs">
       <DependentUpon>201806222318368_ProdutoNomeTabela.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806230853399_ItemVendaAtualizacao.cs" />
+    <Compile Include="Migrations\201806230853399_ItemVendaAtualizacao.Designer.cs">
+      <DependentUpon>201806230853399_ItemVendaAtualizacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Binders\ItemVendaModelBinder.cs" />
+    <Compile Include="Models\Itens.cs" />
     <Compile Include="Models\Model\Cliente.cs" />
     <Compile Include="Models\Model\ItemVenda.cs" />
+    <Compile Include="Models\Binders\ItensJson.cs" />
     <Compile Include="Models\Model\Produto.cs" />
     <Compile Include="Models\Model\Status.cs" />
     <Compile Include="Models\Model\Venda.cs" />
     <Compile Include="Models\Negocio\ClienteNegocio.cs" />
+    <Compile Include="Models\Negocio\ItemVendaNegocio.cs" />
     <Compile Include="Models\Negocio\ProdutoNegocio.cs" />
     <Compile Include="Models\Negocio\VendaNegocio.cs" />
     <Compile Include="Models\Repositorio\ClienteRepositorio.cs" />
+    <Compile Include="Models\Repositorio\ItemVendaRepositorio.cs" />
     <Compile Include="Models\Repositorio\ProdutoRepositorio.cs" />
     <Compile Include="Models\Repositorio\VendaRepositorio.cs" />
     <Compile Include="Persistencia\VendaDbContext.cs" />
@@ -380,6 +390,7 @@
     <Content Include="Views\Produtos\Index.cshtml" />
     <Content Include="Views\Shared\_Cadastro.cshtml" />
     <Content Include="Views\Vendas\Index.cshtml" />
+    <Content Include="Views\ItensVenda\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -410,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806222318368_ProdutoNomeTabela.resx">
       <DependentUpon>201806222318368_ProdutoNomeTabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806230853399_ItemVendaAtualizacao.resx">
+      <DependentUpon>201806230853399_ItemVendaAtualizacao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
